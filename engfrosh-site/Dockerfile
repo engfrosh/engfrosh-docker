@@ -1,0 +1,15 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
+
+RUN useradd -ms /bin/bash ubuntu
+RUN apt-get update && apt-get upgrade -y && apt-get install -y git libpq-dev sudo
+RUN cd /home/ubuntu && git clone https://github.com/finlaywashere/engfrosh.git && cd engfrosh && sh setup.sh && cd engfrosh_site && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic
+COPY start.sh /home/ubuntu/start.sh
+COPY nginx.conf /etc/nginx/sites-available/mars.engfrosh.com
+RUN ln -s /etc/nginx/sites-available/mars.engfrosh.com /etc/nginx/sites-enabled && rm /etc/nginx/sites-enabled/default
+RUN chmod +x /home/ubuntu/start.sh
+RUN chown -R ubuntu:www-data /home/ubuntu
+
+ENTRYPOINT ["/home/ubuntu/start.sh"]

@@ -10,6 +10,7 @@ COPY start.sh /home/ubuntu/start.sh
 COPY nginx.conf /etc/nginx/sites-available/mars.engfrosh.com
 RUN ln -s /etc/nginx/sites-available/mars.engfrosh.com /etc/nginx/sites-enabled && rm /etc/nginx/sites-enabled/default
 RUN chmod +x /home/ubuntu/start.sh
+RUN rm -f /home/ubuntu/engfrosh/engfrosh_site/engfrosh_site.sock
 RUN chown -R ubuntu:www-data /home/ubuntu
 
 ENTRYPOINT ["/home/ubuntu/start.sh"]

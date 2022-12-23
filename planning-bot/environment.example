@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export GUILD='1234'
+export TOKEN='not-a-token'

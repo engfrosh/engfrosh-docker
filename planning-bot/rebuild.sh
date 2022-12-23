@@ -3,4 +3,4 @@ export NAME=planning-bot
 docker stop $NAME
 docker rm $NAME
 docker build -t engfrosh/$NAME --network host . --no-cache
-docker run -it -d --name $NAME -v source=certs,target=/etc/letsencrypt/ --net host engfrosh/$NAME
+docker run -it -d --name $NAME -v source=certs,target=/etc/letsencrypt/ --net host --restart unless-stopped engfrosh/$NAME

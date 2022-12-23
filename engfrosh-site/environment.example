@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export ENGFROSH_DEPLOY_TYPE="PROD"
+export DJANGO_SECRET_KEY="test12345" # Change this before deploying
+export DISCORD_BOT_TOKEN=""

@@ -1,5 +1,5 @@
 #!/bin/bash
-export NAME=planning-bot
+export NAME=discord-bot
 docker stop $NAME
 docker rm $NAME
 docker build -t engfrosh/$NAME --network host . --no-cache

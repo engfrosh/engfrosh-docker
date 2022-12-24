@@ -1,0 +1,3 @@
+#!/bin/sh
+export ENGFROSH_DEPLOY_TYPE="PROD"
+export DISCORD_BOT_TOKEN="a discord token goes here"

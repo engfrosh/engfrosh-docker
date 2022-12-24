@@ -9,6 +9,8 @@ RUN cd /home/ubuntu && git clone https://github.com/engfrosh/discord-bot && cd d
 COPY start.sh /home/ubuntu/start.sh
 RUN chmod +x /home/ubuntu/start.sh
 COPY environment /home/ubuntu/discord-bot/environment
+COPY configs.py /home/ubuntu/discord-bot/common_models/configs.py
+RUN mkdir -p /home/ubuntu/discord-bot/offline-files/soopp-bingo/
 RUN chown -R ubuntu:ubuntu /home/ubuntu
 
 ENTRYPOINT ["/home/ubuntu/start.sh"]

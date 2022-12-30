@@ -1,8 +1,9 @@
 #!/bin/bash
 export NAME=engfrosh
+docker build -t engfrosh/$NAME --network host . --no-cache
+
 docker stop $NAME
 docker rm $NAME
-docker build -t engfrosh/$NAME --network host . --no-cache
 
 MEDIA_DIR=$(pwd)/../media/
 

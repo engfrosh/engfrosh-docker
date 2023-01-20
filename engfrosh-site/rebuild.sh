@@ -1,4 +1,6 @@
 #!/bin/bash
+rm -rf ../media.old/
+cp -r ../media/ ../media.old/
 export NAME=engfrosh
 docker build -t engfrosh/$NAME --network host . --no-cache
 

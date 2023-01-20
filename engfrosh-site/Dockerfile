@@ -10,8 +10,6 @@ COPY start.sh /home/ubuntu/start.sh
 COPY environment /home/ubuntu/environment
 COPY nginx.conf /etc/nginx/sites-available/heads.engfrosh.com
 RUN ln -s /etc/nginx/sites-available/heads.engfrosh.com /etc/nginx/sites-enabled && rm /etc/nginx/sites-enabled/default
-RUN mkdir -p /home/ubuntu/.aws/
-COPY credentials /home/ubuntu/.aws/credentials
 COPY credentials.py /home/ubuntu/engfrosh/engfrosh_site/credentials.py
 RUN chmod +x /home/ubuntu/start.sh
 RUN chmod +x /home/ubuntu/environment

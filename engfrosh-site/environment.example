@@ -3,3 +3,6 @@
 export ENGFROSH_DEPLOY_TYPE="PROD"
 export DJANGO_SECRET_KEY="test12345" # Change this before deploying
 export DISCORD_BOT_TOKEN=""
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_DEFAULT_REGION="us-east-2"

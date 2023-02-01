@@ -2,3 +2,6 @@
 export ENGFROSH_DEPLOY_TYPE="PROD"
 export ENGFROSH_CONFIG_TYPE="prod"
 export DISCORD_BOT_TOKEN="a discord token goes here"
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_DEFAULT_REGION="us-east-2"

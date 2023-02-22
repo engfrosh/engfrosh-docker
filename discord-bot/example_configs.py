@@ -1,10 +1,14 @@
 DATABASE = {
-    "ENGINE": "django.db.backends.postgresql_psycopg2",
-    "NAME": "engfrosh_dev_2022_07_05",
+    "ENGINE": "django.db.backends.mysql",
+    "NAME": "engfrosh",
     "USER": "engfrosh_bot",
     "PASSWORD": "mypassword",
-    "HOST": "localhost",
-    "PORT": "5432",
+    "HOST": "127.0.0.1",
+    "PORT": "3306",
+    "OPTIONS": {
+        'charset': 'utf8mb4',
+        'use_unicode': True,
+    },
 }
 
 INSTALLED_APPS = [

@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM engfrosh-deps
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true

@@ -8,3 +8,4 @@ export AWS_SECRET_ACCESS_KEY=""
 export AWS_DEFAULT_REGION="us-east-2"
 export MICROSOFT_TOKEN='SECRET_TOKEN'
 export MICROSOFT_ID='CLIENT_ID'
+export SENTRY_DSN='sentry dsn'

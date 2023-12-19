@@ -5,6 +5,7 @@ DATABASE = {
     "PASSWORD": "mypassword",
     "HOST": "127.0.0.1",
     "PORT": "3306",
+    'CONN_MAX_AGE': 3600,
     "OPTIONS": {
         'charset': 'utf8mb4',
         'use_unicode': True,

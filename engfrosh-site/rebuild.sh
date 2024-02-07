@@ -1,6 +1,6 @@
 #!/bin/bash
 export NAME=engfrosh
-docker build -t engfrosh/$NAME --network host . --no-cache
+docker build -t engfrosh/$NAME --network httpd-net . --no-cache
 
 docker stop $NAME
 docker rm $NAME

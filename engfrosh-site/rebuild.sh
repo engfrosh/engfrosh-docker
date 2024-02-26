@@ -1,6 +1,6 @@
 #!/bin/bash
 export NAME=nem-scav
-docker build -t cses/$NAME --net host . --no-cache
+docker build -t cses/$NAME --network host . --no-cache
 
 docker stop $NAME
 docker rm $NAME

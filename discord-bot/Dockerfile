@@ -4,7 +4,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 ENV TZ="America/Toronto"
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y git libpq-dev sudo python3 python3-pip tzdata libmysqlclient-dev
 RUN cd /home/ubuntu && git clone https://github.com/engfrosh/discord-bot && cd discord-bot && pip install -r requirements.txt && git submodule init && git submodule update
 COPY start.sh /home/ubuntu/start.sh
 RUN chmod +x /home/ubuntu/start.sh

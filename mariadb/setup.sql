@@ -1,3 +1,4 @@
+ALTER USER root@localhost IDENTIFIED VIA unix_socket;
 CREATE USER IF NOT EXISTS engfrosh_site;
 SET PASSWORD FOR engfrosh_site = PASSWORD('there-exercise-fenegle');
 CREATE USER IF NOT EXISTS engfrosh_bot;

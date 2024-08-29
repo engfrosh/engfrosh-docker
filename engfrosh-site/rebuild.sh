@@ -7,6 +7,6 @@ docker rm $NAME
 
 MEDIA_DIR=$(pwd)/../media/
 
-docker run -it -d --name $NAME -v $(pwd)/certs/:/etc/letsencrypt/ -v $MEDIA_DIR:/usr/share/engfrosh_site/files/media/ --net host --restart unless-stopped engfrosh/$NAME
+docker run -it -d --name $NAME -v $(pwd)/certs/:/etc/letsencrypt/ -v $MEDIA_DIR:/usr/share/engfrosh_site/files/media/ --net host --restart unless-stopped --log-driver=journald engfrosh/$NAME
 
 chown -R 1000:1000 $MEDIA_DIR

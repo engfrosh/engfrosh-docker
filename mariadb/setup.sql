@@ -6,3 +6,5 @@ SET PASSWORD FOR engfrosh_bot = PASSWORD('mypassword');
 
 GRANT ALL PRIVILEGES ON *.* TO engfrosh_site;
 GRANT ALL PRIVILEGES ON *.* TO engfrosh_bot;
+GRANT CONNECTION ADMIN ON *.* TO engfrosh_site;
+FLUSH PRIVILEGES;

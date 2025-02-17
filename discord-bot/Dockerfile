@@ -3,7 +3,7 @@ FROM engfrosh/engfrosh-deps
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
-RUN cd /home/ubuntu && git clone https://github.com/engfrosh/discord-bot && cd discord-bot && pip install -r requirements.txt && git submodule init && git submodule update && chown -R ubuntu:ubuntu /home/ubuntu
+RUN cd /home/ubuntu && git clone https://github.com/carleton-student-engineering-society/nem-scav-discord-bot discord-bot && cd discord-bot && pip install -r requirements.txt && git submodule init && git submodule update && chown -R ubuntu:ubuntu /home/ubuntu
 COPY start.sh /home/ubuntu/start.sh
 RUN chmod +x /home/ubuntu/start.sh
 COPY environment /home/ubuntu/discord-bot/environment

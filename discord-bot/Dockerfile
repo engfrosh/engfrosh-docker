@@ -8,6 +8,7 @@ COPY start.sh /home/ubuntu/start.sh
 RUN chmod +x /home/ubuntu/start.sh
 COPY environment /home/ubuntu/discord-bot/environment
 COPY configs.py /home/ubuntu/discord-bot/common_models/configs.py
+COPY config /home/ubuntu/discord-bot/config
 
 RUN cd /home/ubuntu/discord-bot/ && python3 manage.py makemigrations && python3 manage.py migrate
 

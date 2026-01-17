@@ -1,4 +1,4 @@
 certs/
-environment
+environment*
 credentials
 credentials.py

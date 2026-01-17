@@ -1,11 +1,10 @@
-FROM cses/nem-deps
+FROM engfrosh/engfrosh-deps
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y git libpq-dev sudo tzdata libmariadb-dev
-RUN cd /home/ubuntu && git clone https://github.com/carleton-student-engineering-society/nem-scav engfrosh && cd engfrosh && sh setup.sh && cd engfrosh_site && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic
-
+RUN cd /home/ubuntu && git clone https://github.com/engfrosh/engfrosh.git && cd engfrosh && git submodule init && git submodule update && pip3 install -r requirements.txt && cd engfrosh_site && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic && chown -R ubuntu:www-data /home/ubuntu
 COPY start.sh /home/ubuntu/start.sh
 COPY environment /home/ubuntu/environment
 COPY nginx.conf /etc/nginx/sites-available/heads.engfrosh.com

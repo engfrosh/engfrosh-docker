@@ -1,6 +1,6 @@
 #!/bin/bash
-export NAME=nem-discord
-docker build -t cses/$NAME --network httpd-net . --no-cache
+export NAME=discord-bot
+docker build -t engfrosh/$NAME --network host . --no-cache
 
 docker stop $NAME
 docker rm $NAME

@@ -26,12 +26,12 @@ ARG CACHE_BUST=1
 
 RUN git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh engfrosh \
     && cd engfrosh \
-    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir --force-reinstall --break-system-packages -r requirements.txt \
     && cd .. && rm -rf engfrosh
 
 RUN git clone --depth 1 --branch main https://github.com/engfrosh/discord-bot discord-bot \
     && cd discord-bot \
-    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir --force-reinstall --break-system-packages -r requirements.txt \
     && cd .. && rm -rf discord-bot
 
 RUN apt-get purge -y --auto-remove \

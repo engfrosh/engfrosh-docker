@@ -6,9 +6,6 @@ RUN git clone --depth 1 --branch main https://github.com/engfrosh/discord-bot.gi
     && cd discord-bot \
     && git submodule update --init --recursive
 
-# this must be getting purged at some point, investigate
-RUN pip install --no-cache-dir setuptools
-
 COPY start.sh /app/start.sh
 COPY environment /app/discord-bot/environment
 COPY configs.py /app/discord-bot/common_models/configs.py

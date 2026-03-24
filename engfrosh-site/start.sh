@@ -1,7 +1,19 @@
 #!/bin/bash
-cd /home/ubuntu/
-source ./environment
+set -e
+
+echo "Loading environment..."
+source environment
+
 cd engfrosh/engfrosh_site/
-nginx
-rm -f /home/ubuntu/engfrosh/engfrosh_site/engfrosh_site.sock /home/ubuntu/engfrosh/engfrosh_site/engfrosh_site.sock.lock
-sudo -E -u ubuntu -g www-data uvicorn --workers $WORKERS --proxy-headers --uds /home/ubuntu/engfrosh/engfrosh_site/engfrosh_site.sock engfrosh_site.asgi:application
+
+echo "Starting nginx..."
+nginx -g "daemon off;" &
+
+echo "Cleaning old socket..."
+rm -f engfrosh_site.sock engfrosh_site.sock.lock
+
+echo "Starting uvicorn..."
+exec uvicorn --workers "${WORKERS:-4}" \
+             --proxy-headers \
+             --uds /app/engfrosh/engfrosh_site/engfrosh_site.sock \
+             engfrosh_site.asgi:application

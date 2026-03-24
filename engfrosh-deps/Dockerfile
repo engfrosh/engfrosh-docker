@@ -1,9 +1,43 @@
-FROM ubuntu:22.04
+FROM python:3.12-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
-RUN useradd -ms /bin/bash ubuntu
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    tzdata \
+    libpq-dev \
+    libmariadb-dev \
+    pkg-config \
+    build-essential \
+    nginx \
+    #gunicorn \
+    #certbot \
+    #python3-certbot-nginx \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y git libpq-dev sudo tzdata pkg-config libmysqlclient-dev
-RUN cd /home/ubuntu && git clone https://github.com/engfrosh/engfrosh engfrosh && cd engfrosh && sh setup.sh && cd .. && rm -rf engfrosh && git clone https://github.com/engfrosh/discord-bot && cd discord-bot && pip install -r requirements.txt && cd .. && rm -rf discord-bot
+RUN useradd -ms /bin/bash app
+
+WORKDIR /app
+
+RUN git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh engfrosh \
+    && cd engfrosh \
+    && pip install --no-cache-dir -r requirements.txt \
+    && cd .. && rm -rf engfrosh
+
+RUN git clone --depth 1 --branch main https://github.com/engfrosh/discord-bot discord-bot \
+    && cd discord-bot \
+    && pip install --no-cache-dir -r requirements.txt \
+    && cd .. && rm -rf discord-bot
+
+RUN apt-get purge -y --auto-remove \
+    build-essential \
+    pkg-config \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN chown -R app:app /app
+RUN mkdir /usr/share/engfrosh_site && chown -R app:app /usr/share/engfrosh_site
+RUN chown -R app:app /var/lib/nginx
+
+USER app
+WORKDIR /app

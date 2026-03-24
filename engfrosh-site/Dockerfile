@@ -17,8 +17,8 @@ RUN cd engfrosh/engfrosh_site \
 COPY start.sh /app/start.sh
 COPY environment /app/environment
 COPY credentials.py /app/engfrosh/engfrosh_site/credentials.py
-COPY nginx.conf /etc/nginx/sites-available/server.engfrosh.com
-COPY nginx-server.conf /etc/nginx/nginx.conf
+COPY server.engfrosh.com.conf /etc/nginx/sites-available/server.engfrosh.com
+COPY nginx.conf /etc/nginx/nginx.conf
 
 USER root
 RUN ln -s /etc/nginx/sites-available/server.engfrosh.com /etc/nginx/sites-enabled \

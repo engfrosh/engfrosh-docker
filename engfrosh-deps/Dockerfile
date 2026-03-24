@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.12-slim AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN useradd -ms /bin/bash app
 
 WORKDIR /app
+
+FROM base AS app
+
+ARG CACHE_BUST=1
 
 RUN git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh engfrosh \
     && cd engfrosh \

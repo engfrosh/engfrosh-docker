@@ -1,0 +1,74 @@
+services:
+  deps:
+    build:
+      context: ./engfrosh-deps
+      network: host
+      no_cache: true
+    image: engfrosh/engfrosh-deps
+    profiles: ["build-deps"]
+
+  deps-cached:
+    build:
+      context: ./engfrosh-deps
+      dockerfile: Dockerfile
+      network: host
+      args:
+        CACHE_BUST: ${CACHE_BUST-}
+    image: engfrosh/engfrosh-deps
+    profiles: ["build-deps-cached"]
+
+  site:
+    build:
+      context: ./engfrosh-site
+      network: host
+      no_cache: true
+    image: engfrosh/engfrosh
+    container_name: engfrosh
+    environment:
+      WORKERS: 50
+    volumes:
+      - ./site/certs:/etc/letsencrypt/
+      - ../media:/usr/share/site/files/media/
+      # chown -R 1000:1000 ../media
+    network_mode: host
+    restart: unless-stopped
+    logging:
+      driver: journald
+    depends_on:
+      - db
+
+services:
+  bot:
+    build:
+      context: ./discord-bot
+      network: host
+      no_cache: true
+    image: engfrosh/discord-bot
+    container_name: discord-bot
+    network_mode: host
+    restart: unless-stopped
+    logging:
+      driver: journald
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./mariadb
+      no_cache: true
+    image: engfrosh/mariadb
+    container_name: mariadb
+    network_mode: host
+    environment:
+      MARIADB_ROOT_PASSWORD: test
+    volumes:
+      - ./db/backups:/var/backups
+      - db:/var/lib/mysql
+    command: >
+      --wait_timeout=31536000
+      --max_connections=100
+    restart: unless-stopped
+
+volumes:
+  db:
+    external: true

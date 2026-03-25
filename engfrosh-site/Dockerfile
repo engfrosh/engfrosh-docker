@@ -6,9 +6,6 @@ RUN git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh.git e
     && cd engfrosh \
     && git submodule update --init --recursive
 
-# very temporary fix lol
-COPY settings.py /app/engfrosh/engfrosh_site/engfrosh_site/settings.py
-
 RUN cd engfrosh/engfrosh_site \
     && python3 manage.py makemigrations \
     && python3 manage.py migrate \

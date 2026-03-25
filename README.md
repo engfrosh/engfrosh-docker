@@ -1,7 +1,11 @@
-# EngFrosh docker scripts for easy setup
+# Docker Compose Usage
 
-## MariaDB Setup
+`docker compose --profile build-deps-cached build deps`
 
-1. Open a terminal in the MariaDB folder
-2. Run `rebuild.sh` to build the docker container
-3. Run `setup.sh` to run the first time setup
+`docker compose --profile build-deps build deps`
+
+`docker compose build bot && docker compose up -d`
+
+`docker compose build site && docker compose up -d`
+
+

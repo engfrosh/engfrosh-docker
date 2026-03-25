@@ -25,8 +25,7 @@ services:
     environment:
       WORKERS: 50
     volumes:
-      - ./site/certs:/etc/letsencrypt/
-      - ../media:/usr/share/site/files/media/
+      - ../media:/usr/share/engfrosh_site/files/media/
       # chown -R 1000:1000 ../media
     network_mode: host
     restart: unless-stopped

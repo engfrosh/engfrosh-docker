@@ -12,8 +12,6 @@ services:
       context: ./engfrosh-deps
       dockerfile: Dockerfile
       network: host
-      args:
-        CACHE_BUST: ${CACHE_BUST-}
     image: engfrosh/engfrosh-deps
     profiles: ["build-deps-cached"]
 
@@ -37,7 +35,6 @@ services:
     depends_on:
       - db
 
-services:
   bot:
     build:
       context: ./discord-bot

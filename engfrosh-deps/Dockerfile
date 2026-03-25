@@ -18,11 +18,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN useradd -ms /bin/bash app
 
-WORKDIR /app
-
 FROM base AS app
 
-ARG CACHE_BUST=1
+WORKDIR /app
+
+RUN date +%s > /tmp/no_cache
 
 RUN git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh engfrosh \
     && cd engfrosh \

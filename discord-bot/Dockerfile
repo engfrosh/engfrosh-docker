@@ -1,15 +1,23 @@
 FROM engfrosh/engfrosh-deps
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV DEBCONF_NONINTERACTIVE_SEEN=true
+WORKDIR /app
 
-RUN cd /home/ubuntu && git clone https://github.com/engfrosh/discord-bot discord-bot && cd discord-bot && pip install -r requirements.txt && git submodule init && git submodule update && chown -R ubuntu:ubuntu /home/ubuntu
-COPY start.sh /home/ubuntu/start.sh
-RUN chmod +x /home/ubuntu/start.sh
-COPY environment /home/ubuntu/discord-bot/environment
-COPY configs.py /home/ubuntu/discord-bot/common_models/configs.py
-COPY config /home/ubuntu/discord-bot/config
+RUN git clone --depth 1 --branch main https://github.com/engfrosh/discord-bot.git discord-bot \
+    && cd discord-bot \
+    && git submodule update --init --recursive
 
-RUN cd /home/ubuntu/discord-bot/ && python3 manage.py makemigrations && python3 manage.py migrate
+COPY start.sh /app/start.sh
+COPY environment /app/discord-bot/environment
+COPY configs.py /app/discord-bot/common_models/configs.py
+COPY config /app/discord-bot/config
 
-ENTRYPOINT ["/home/ubuntu/start.sh"]
+RUN cd discord-bot \
+    && python3 manage.py makemigrations \
+    && python3 manage.py migrate
+
+USER root
+RUN chmod +x /app/start.sh
+USER app
+WORKDIR /app/discord-bot
+
+ENTRYPOINT ["/app/start.sh"]

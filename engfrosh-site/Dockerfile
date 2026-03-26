@@ -23,4 +23,6 @@ RUN ln -s /etc/nginx/sites-available/server.engfrosh.com /etc/nginx/sites-enable
 RUN chmod +x /app/start.sh
 USER app
 
+EXPOSE 8080
+
 ENTRYPOINT ["/app/start.sh"]

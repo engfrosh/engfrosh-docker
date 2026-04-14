@@ -25,8 +25,8 @@ services:
     environment:
       WORKERS: 50
     volumes:
-      - ../media:/usr/share/engfrosh_site/files/media/
-      # chown -R 1000:1000 ../media
+      - ./media:/usr/share/engfrosh_site/files/media/
+      # make sure chown -R 1000:1000 media
     network_mode: host
     restart: unless-stopped
     logging:
@@ -58,7 +58,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: test
     volumes:
-      - ./db/backups:/var/backups
+      - ./mariadb/backups:/var/backups
       - db:/var/lib/mysql
     command: >
       --wait_timeout=31536000

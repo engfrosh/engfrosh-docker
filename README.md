@@ -16,10 +16,10 @@ This repo contains `Dockerfiles` and a `docker-compose.yml` to build the Engfros
 
 `docker compose --profile build-deps build deps`
 
-`docker compose build db && docker compose start db`
+`docker compose build db && docker compose up db -d`
 
-`docker compose build bot && docker compose up -d`
+`docker compose build bot && docker compose up bot -d`
 
-`docker compose build site && docker compose up -d`
+`docker compose build site && docker compose up site -d`
 
 

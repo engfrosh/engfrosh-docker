@@ -12,14 +12,24 @@ This repo contains `Dockerfiles` and a `docker-compose.yml` to build the Engfros
 
 # Docker Compose Usage
 
-`docker compose --profile build-deps-cached build deps`
+* Full deps image rebuild
 
-`docker compose --profile build-deps build deps`
+    `docker compose --profile build-deps build deps`
 
-`docker compose build db && docker compose up db -d`
+* Skip the apt install/upgrade layer and only update python packages
 
-`docker compose build bot && docker compose up bot -d`
+    `docker compose --profile build-deps-cached build deps`
 
-`docker compose build site && docker compose up site -d`
+* Build and start the database
+
+    `docker compose build db && docker compose up db -d`
+
+* Build and start the bot, or rebuild after code changes
+
+    `docker compose build bot && docker compose up bot -d`
+
+* Build and start the site, or rebuild after code changes
+
+    `docker compose build site && docker compose up site -d`
 
 

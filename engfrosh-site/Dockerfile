@@ -2,9 +2,19 @@ FROM engfrosh/engfrosh-deps
 
 WORKDIR /app
 
-RUN git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh.git engfrosh \
-    && cd engfrosh \
-    && git submodule update --init --recursive
+ARG MODE=
+
+RUN if [ "$MODE" = "remote" ]; then \
+      echo "Pulling remote submodule changes"; \
+      git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh.git engfrosh \
+      && cd engfrosh \
+      && git submodule update --init --recursive --remote; \
+    else \
+      echo "Using pinned submodule commit"; \
+      git clone --depth 1 --branch main https://github.com/engfrosh/engfrosh.git engfrosh \
+      && cd engfrosh \
+      && git submodule update --init --recursive; \
+    fi
 
 COPY environment /app/environment
 

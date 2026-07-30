@@ -32,4 +32,6 @@ This repo contains `Dockerfiles` and a `docker-compose.yml` to build the Engfros
 
     `docker compose build site && docker compose up site -d`
 
+* Build the site using the latest submodule commits
 
+    `docker compose build site --build-arg MODE=remote`
